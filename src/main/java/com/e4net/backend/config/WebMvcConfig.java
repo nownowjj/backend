@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
     //08/05 WebMvcConfig 생성
 
+    //CORS를 방지해준다.
+    //해당 url은 허가된다.
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry){
         corsRegistry.addMapping("/**")
