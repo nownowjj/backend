@@ -1,5 +1,6 @@
 package com.e4net.backend.repository;
 
+import com.e4net.backend.domain.Role;
 import com.e4net.backend.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,5 +41,27 @@ public class UserRepositoryTest {
         Assertions.assertEquals(user.getEmail(), email);
         Assertions.assertEquals(user.getPassword(), password);
         Assertions.assertEquals(user.getUsername(), username);
+    }
+
+    @Test
+    public void 시간등록테스트(){
+        //given
+        String username = "timeTest";
+        String email = "timeTest@email.com";
+        String password = "1234";
+        Role role = Role.ROLE_USER;
+
+        userRepository.save(User.builder()
+                .username(username)
+                .email(email)
+                .password(password)
+                .role(role)
+                .build());
+        //when
+        List<User> usersList = userRepository.findAll();
+
+        //then
+        User user = usersList.get(usersList.size() - 1);
+        System.out.println(user.toString());
     }
 }

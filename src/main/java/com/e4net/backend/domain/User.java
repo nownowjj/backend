@@ -3,15 +3,17 @@ package com.e4net.backend.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
 //NoArgsConstructor 테스트할때 필요했다. 아마 기본 생성자?
+@ToString
 @Getter
 @NoArgsConstructor
 @Entity
-public class User {
+public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +21,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "username")
     private String username;
 
     @Column(nullable = false)
