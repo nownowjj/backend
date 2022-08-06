@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class User extends BaseEntity{
+    //08/06 BaseEntity 상속
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
