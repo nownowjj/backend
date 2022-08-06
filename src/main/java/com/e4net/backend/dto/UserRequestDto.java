@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class UserRequestDto {
+    //리액트 회원가입구간에서 데이터를 받아오는 DTO
 
     private String email;
 
