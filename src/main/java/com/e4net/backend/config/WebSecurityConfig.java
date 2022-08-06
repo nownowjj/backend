@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class WebSecurityConfig {
-
+    //git 수정 업데이트
     //spring security에서 입력된 비밀번호를 인코딩해준다.
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
