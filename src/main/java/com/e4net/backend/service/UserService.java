@@ -22,5 +22,4 @@ public class UserService {
         //데이터 저장
         userRepository.save(entity);
     }
-
 }

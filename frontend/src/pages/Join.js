@@ -43,33 +43,33 @@ const Join = () => {
     return (
         <div>
             <h1>Join.js에 존재하는 회원가입폼입니다!!</h1>
-        <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+                
+                <input
+                type="text"
+                name="username"
+                onChange={handleChange}
+                value={userData.username} 
+                placeholder="이름을 입력하세요"
+                />
+                
+                <input
+                type="email"
+                name="email" 
+                onChange={handleChange} 
+                value={userData.email} 
+                placeholder="이메일을 입력하세요" />
+                
+                <input
+                type="password"
+                name="password" 
+                onChange={handleChange} 
+                value={userData.password} 
+                placeholder="비밀번호를 입력하세요" />
+                
+                <input type="submit" value="Submit" />
             
-            <input
-            type="text"
-            name="username"
-            onChange={handleChange}
-            value={userData.username} 
-            placeholder="이름을 입력하세요"
-            />
-            
-            <input
-            type="email"
-            name="email" 
-            onChange={handleChange} 
-            value={userData.email} 
-            placeholder="이메일을 입력하세요" />
-            
-            <input
-            type="password"
-            name="password" 
-            onChange={handleChange} 
-            value={userData.password} 
-            placeholder="비밀번호를 입력하세요" />
-            
-            <input type="submit" value="Submit" />
-        
-        </form>
+            </form>
         </div>
     );
 }

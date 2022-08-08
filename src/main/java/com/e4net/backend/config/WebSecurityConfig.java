@@ -4,11 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class WebSecurityConfig {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //git 수정 업데이트
     //spring security에서 입력된 비밀번호를 인코딩해준다.
     @Bean
@@ -17,8 +18,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+    public void configure(HttpSecurity http) throws Exception {
         http
                 .cors() //Cross Origin Resource Sharing
                     .and()
@@ -27,7 +27,5 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/api/user/**").permitAll();
-
-        return http.build();
     }
 }
