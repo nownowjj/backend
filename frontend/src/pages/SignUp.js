@@ -1,13 +1,14 @@
 import React, { useState} from "react";
-import ApiService from "../api/ApiService";
+import { notification } from "antd";
+import { signup } from "../utils/APIUtils";
 
-const Join = () => {
+const SignUp = () => {
     //유저정보를 저장한 state를 생성해준다.
     const [userData, setUserData] = useState({
+        name: "",
         username: "",
-        password: "",
         email: "",
-        message: null
+        password: ""
     })
 
     //변화된 값을 담아주는 function
@@ -27,16 +28,30 @@ const Join = () => {
 
         //페이지에서 입력한 정보가 해당 userDate state에 저장된다.
         let user = {
+            name: userData.name,
             username: userData.username,
-            password: userData.password,
             email: userData.email,
-            message: userData.message,
+            password: userData.password,
         }
         //JSON타입으로 데이터가 담겼는지 확인
         console.log(JSON.stringify(userData));
     
         //User정보를 JSON타입으로 api호출해준다 
-        ApiService.addUser(user)
+        signup(user)
+        .then(response => {
+            notification.success({
+                message: 'Hello!!',
+                description: "성공적으로 회원가입되었습니다. 로그인을 해주세요.",
+            });
+            // this.props.history.push("/login");
+            console.log(user)
+            window.history.pushState(user, '', '/login');
+        }).catch(error => {
+            notification.error({
+                message: 'Error!!',
+                description: error.message || '다시 시도해주세요.'
+            });
+        });
         console.log('addUser실행됨')
     }
 
@@ -44,13 +59,21 @@ const Join = () => {
         <div>
             <h1>Join.js에 존재하는 회원가입폼입니다!!</h1>
             <form onSubmit={handleSubmit}>
+
+                <input
+                type="text"
+                name="name"
+                onChange={handleChange}
+                value={userData.name} 
+                placeholder="이름을 입력하세요"
+                />
                 
                 <input
                 type="text"
                 name="username"
                 onChange={handleChange}
                 value={userData.username} 
-                placeholder="이름을 입력하세요"
+                placeholder="아이디를 입력하세요"
                 />
                 
                 <input
@@ -74,4 +97,4 @@ const Join = () => {
     );
 }
 
-export default Join;
+export default SignUp;

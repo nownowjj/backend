@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"; 
-import Join from "../pages/Join";
+import SignUp from "../pages/SignUp";
 import Login from '../pages/Login';
 
 
@@ -7,8 +7,8 @@ const RootRouter = () => {
     return(
         <div>
             <Routes>
-                <Route path="/" element={<Login />}></Route>
-                <Route path="/join" element={<Join />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/signup" element={<SignUp />}></Route>
             </Routes>
         </div>
     );

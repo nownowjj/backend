@@ -1,24 +1,40 @@
 import React from "react";
 import { useState } from "react";
+import { login } from "../utils/APIUtils";
 
+const ACCESS_TOKEN = 'accessToken';
 
 const Login = () => {
-    const [values, setValues] = useState({
-        email: "",
+    const [userInfo, setUserInfo] = useState({
+        usernameOrEmail: "",
         password: "",
     })
 
     const handleChange = (e) => {
-        setValues({
-            ...values,
+        setUserInfo({
+            ...userInfo,
             [e.target.name]: e.target.value,
         })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(JSON.stringify(values, null, 2));
-        console.log(values);
+        console.log(userInfo);
+
+        let loginRequest = {
+            usernameOrEmail: userInfo.usernameOrEmail,
+            password: userInfo.password,
+        }
+        //JSON타입으로 데이터가 담겼는지 확인
+        console.log(JSON.stringify(userInfo));
+    
+        login(loginRequest)
+        .then(response => {
+            localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        });
+
+        console.log(userInfo);
+            
     }
 
     return (
@@ -27,9 +43,8 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
 
                 <input 
-                    type="email"
-                    name="email"
-                    value={values.email}
+                    name="usernameOrEmail"
+                    value={userInfo.usernameOrEmail}
                     placeholder="이메일을 입력하세요"
                     onChange={handleChange}
                 />
@@ -37,11 +52,11 @@ const Login = () => {
                 <input  
                     type="password"
                     name="password"
-                    value={values.password}
+                    value={userInfo.password}
                     placeholder="비밀번호를 입력하세요"
                     onChange={handleChange}
                 />
-                <button type="submit">로그인</button>
+                <button type="submit" value="Submit">로그인</button>
             </form>
         </div>
     );
