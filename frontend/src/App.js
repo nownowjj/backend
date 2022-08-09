@@ -1,15 +1,6 @@
-import RootRouter from './router/RootRouter';
-import { BrowserRouter } from "react-router-dom";
-
+import Router from "./router/Router";
 function App() {
-  return (
-    <div>
-      <h1>App Component에 존재하는 h1입니다!</h1>
-      <BrowserRouter>
-        <RootRouter />
-      </BrowserRouter>
-    </div>
-  );
+    return <Router />;
 }
-
 export default App;
+
