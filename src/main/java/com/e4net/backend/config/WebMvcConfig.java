@@ -1,19 +1,30 @@
 package com.e4net.backend.config;
 
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-    //08/05 WebMvcConfig 생성
 
-    //CORS를 방지해준다.
-    //해당 url은 허가된다.
+    private final long MAX_AGE_SECS = 3600;
+
     @Override
-    public void addCorsMappings(CorsRegistry corsRegistry){
-        corsRegistry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
-                .allowedMethods("OPTION", "GET", "POST", "PUT", "DELETE");
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
+                .maxAge(MAX_AGE_SECS);
+
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/");
+    }
+
 }
