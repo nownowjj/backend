@@ -11,6 +11,7 @@ import com.e4net.backend.payload.SignUpRequest;
 import com.e4net.backend.repository.RoleRepository;
 import com.e4net.backend.repository.UserRepository;
 import com.e4net.backend.security.JwtTokenProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
