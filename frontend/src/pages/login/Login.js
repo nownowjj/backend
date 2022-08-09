@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import TextLogo from '../../component/items/textLogo';
 import Logo from '../../component/items/logo';
-import Input from '../../component/items/Input';
-import Button from '../../component/items/Button';
+// import Input from '../../component/items/Input';
+// import Button from '../../component/items/Button';
+import {login} from "../../utils/APIUtils"
+import { notification } from "antd";
 
 const ACCESS_TOKEN = 'accessToken';
 
@@ -60,22 +62,22 @@ const handleSubmit = (e) => {
       <Logo/>  {/*  E4. 로고 */}
       <TextLogo/>
 
-      <form>
-        <Input
+      <form onSubmit={handleSubmit}>
+        <input
         placeholder="Id"
-        name="id" 
-        value={userData.id} 
-        onChange={onChange}
+        name="usernameOrEmail" 
+        value={userInfo.usernameOrEmail} 
+        onChange={handleChange}
         />
 
-        <Input
+        <input
         placeholder="PassWord" 
         name="password" 
-        value={userData.password} 
-        onChange={onChange}
+        value={userInfo.password} 
+        onChange={handleChange}
         />
         
-        <Button type="submit" value="Submit">로그인</Button>
+        <button type="submit" value="Submit">로그인</button>
 
       </form>
       

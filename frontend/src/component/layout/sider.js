@@ -17,7 +17,7 @@ const Cmsider =() =>{
     // if (window.location.pathname === '/') return null;
 
     const locationNow = useLocation();
-    console.log(locationNow);
+    // console.log(locationNow);
     if(locationNow.pathname === "/") return null;
     if(locationNow.pathname === "/join") return null;
     

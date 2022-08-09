@@ -3,8 +3,9 @@ import { signup } from "../../utils/APIUtils";
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import Logo from '../../component/items/logo';
-import Input from '../../component/items/logo';
-import Button from '../../component/items/Button';
+// import Input from '../../component/items/Input';
+// import Button from '../../component/items/Button';
+import { notification } from "antd";
 
 const JoinSection = styled.div`
   border:1px solid black;
@@ -72,9 +73,9 @@ const handleSubmit = (e) => {
       회원가입 페이지(추후 삭제)
      <Logo/>  {/*  E4. 로고 */}
       회원가입
-      <form>
+      <form onSubmit={handleSubmit}>
 
-        <Input 
+        <input 
         type="text"
         name="name"
         onChange={handleChange}
@@ -82,7 +83,7 @@ const handleSubmit = (e) => {
         placeholder="이름을 입력하세요"
         />
 
-        <Input
+        <input
         type="text"
         name="username"
         onChange={handleChange}
@@ -90,7 +91,7 @@ const handleSubmit = (e) => {
         placeholder="아이디를 입력하세요"
          />
 
-        <Input 
+        <input 
          type="email"
          name="email" 
          onChange={handleChange} 
@@ -98,7 +99,7 @@ const handleSubmit = (e) => {
          placeholder="이메일을 입력하세요"
          />
         
-        <Input 
+        <input 
          type="password"
          name="password" 
          onChange={handleChange} 
@@ -106,7 +107,7 @@ const handleSubmit = (e) => {
          placeholder="비밀번호를 입력하세요" 
          />
         
-        <Button type="submit" value="Submit"/>
+        <button type="submit" value="Submit">가입</button>
         <Link to="/">로그인 페이지로 이동</Link>
 
       </form>
