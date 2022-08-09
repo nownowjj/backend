@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { login } from "../utils/APIUtils";
+import { notification } from "antd";
 
 const ACCESS_TOKEN = 'accessToken';
 
@@ -19,7 +20,6 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userInfo);
 
         let loginRequest = {
             usernameOrEmail: userInfo.usernameOrEmail,
@@ -31,10 +31,14 @@ const Login = () => {
         login(loginRequest)
         .then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+            alert('로그인에 성공하였습니다!');
+            window.history.pushState(ACCESS_TOKEN, '', '/welcome');
+        }).catch(error => {
+            notification.error({
+                message: 'Error!!',
+                description: error.message || '다시 시도해주세요.'
+            });
         });
-
-        console.log(userInfo);
-            
     }
 
     return (
